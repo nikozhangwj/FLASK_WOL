@@ -62,7 +62,7 @@
 					data:$('#form').serialize(),
 					success:function(data){
 						if(data.code == 1){
-						    $('#prompt').html('<div class="alert alert-success"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>请求成功</div>');
+						    $('#prompt').html('<div class="alert alert-success"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>请求成功：' + data.message + '</div>');
                         }
                         else if(data.code == 0){
                             $('#prompt').html('<div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>请求失败：' + data.message + '</div>');

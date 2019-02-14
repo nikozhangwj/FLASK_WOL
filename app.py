@@ -16,11 +16,11 @@ def wake():
 
     try:
         mac = request.values.get('mac_addr')
-        if mac == None:
-            raise ValueError
+        if mac == "":
+            raise ValueError('MAC address cannot be none.')
         send_magic_packet(mac)
         response['code'] = 1
-        response['message'] = '请求成功'
+        response['message'] = '请验证'
     except ValueError as error:
         response['code'] = 0
         response['message'] = str(error)
@@ -28,5 +28,6 @@ def wake():
     return jsonify(response)
 
 
+# Debug调试的时候从这里启用，正式环境使用gunicorn启动
 if __name__ == '__main__':
-    app.run(debug=False, port=50005, host='0.0.0.0')
+    app.run(debug=True, port=50005, host='127.0.0.1')
