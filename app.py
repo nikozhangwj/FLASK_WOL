@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 from flask import Flask, render_template, request, jsonify
-from FLASK_WOL.wakeonlan import send_magic_packet
+from wakeonlan import send_magic_packet
 app = Flask(__name__)
 
 
