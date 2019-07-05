@@ -16,9 +16,10 @@ def wake():
 
     try:
         mac = request.values.get('mac_addr')
+        br = request.values.get('br_addr')
         if mac == "":
             raise ValueError('MAC address cannot be none.')
-        send_magic_packet(mac)
+        send_magic_packet(mac, ip_address=br)
         response['code'] = 1
         response['message'] = '请验证'
     except ValueError as error:
