@@ -44,7 +44,7 @@ def search_mac():
                 continue
             line = line.split(" ")
             line = [i.strip() for i in line if i.strip() != '']
-            if legal_ip(line[1]) and line[2] != "(incomplete)":
+            if legal_ip(line[0]) and line[2] != "(incomplete)":
                 macs.append({"mac": line[2], "ip": line[0]})
     return macs
 
