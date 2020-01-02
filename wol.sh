@@ -43,6 +43,9 @@ case $command in
   stop)
     stop;
 	;;
+  status)
+    status;
+	;;
 	*)
     help;
 		exit 1;
