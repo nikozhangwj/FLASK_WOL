@@ -32,11 +32,18 @@
 	      	</div>
 	      </div>
 	      <div class="row">
+              <p>{{ welcome_words }}</p>
+
 	        <div class="col-xs-12 col-md-6 col-lg-6">
 				<form id="form">
 				  <div class="form-group">
 				    <label for="mac_addr">MAC地址</label>
-				    <input type="text" class="form-control" id="mac_addr" name="mac_addr" placeholder="例:D4:3D:7A:11:2E:B7">
+{#				    <input type="text" class="form-control" id="mac_addr" name="mac_addr" placeholder="例:D4:3D:7A:11:2E:B7">#}
+                    <select class="form-control" id="mac_addr" name="mac_addr">
+                      {% for mac in macs %}
+                          <option value="{{ mac.mac }}">{{ mac.mac }}({{ mac.ip }})</option>
+                      {% endfor %}
+                    </select>
                     <label for="br_addr">广播地址</label>
 				    <input type="text" class="form-control" id="br_addr" name="br_addr" placeholder="内网广播地址">
 				  </div>
@@ -49,7 +56,7 @@
 	      <hr>
 
 	      <footer>
-	        <p>© 2019 Company, Inc.</p>
+	        <p>© 2020 Company, Inc.</p>
 	      </footer>
 	    </div> <!-- /container -->
 
@@ -63,10 +70,10 @@
 					async:true,
 					data:$('#form').serialize(),
 					success:function(data){
-						if(data.code == 1){
+						if(data.code === 1){
 						    $('#prompt').html('<div class="alert alert-success"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>请求成功：' + data.message + '</div>');
                         }
-                        else if(data.code == 0){
+                        else if(data.code === 0){
                             $('#prompt').html('<div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>请求失败：' + data.message + '</div>');
                         }
 					},

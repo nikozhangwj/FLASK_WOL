@@ -2,12 +2,13 @@
 
 from flask import Flask, render_template, request, jsonify
 from wakeonlan import send_magic_packet
+from nettools import search_mac
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', welcome_words="Hello, Niko!", macs=search_mac())
 
 
 @app.route('/wake', methods=['post'])
