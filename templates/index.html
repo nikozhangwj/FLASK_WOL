@@ -37,9 +37,11 @@
 	        <div class="col-xs-12 col-md-6 col-lg-6">
 				<form id="form">
 				  <div class="form-group">
-				    <label for="mac_addr">MAC地址</label>
-{#				    <input type="text" class="form-control" id="mac_addr" name="mac_addr" placeholder="例:D4:3D:7A:11:2E:B7">#}
-                    <select class="form-control" id="mac_addr" name="mac_addr">
+				    <label for="mac_addr">手动输入MAC地址</label>
+				    <input type="text" class="form-control" id="mac_addr" name="mac_addr" placeholder="例:D4:3D:7A:11:2E:B7">
+                  	<label for="mac_addr">MAC地址</label>
+                    <select class="form-control" id="mac_addr" name="mac_addr_select">
+                          <option value="">---</option>
                       {% for mac in macs %}
                           <option value="{{ mac.mac }}">{{ mac.mac }}({{ mac.ip }})</option>
                       {% endfor %}

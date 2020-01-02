@@ -1,4 +1,5 @@
 # encoding: utf-8
+from subprocess import getstatusoutput
 
 from flask import Flask, render_template, request, jsonify
 from wakeonlan import send_magic_packet
@@ -8,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', welcome_words="Hello, Niko!", macs=search_mac())
+    return render_template('index.html', welcome_words="Hello, {}!".format(request.remote_addr), macs=search_mac())
 
 
 @app.route('/wake', methods=['post'])
@@ -17,8 +18,11 @@ def wake():
 
     try:
         mac = request.values.get('mac_addr')
+        mac_select = request.values.get('mac_select')
         br = request.values.get('br_addr')
         if mac == "":
+            raise ValueError('MAC address cannot be none.')
+        elif mac_select == "":
             raise ValueError('MAC address cannot be none.')
         send_magic_packet(mac, ip_address=br)
         response['code'] = 1
